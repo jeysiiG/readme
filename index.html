@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Calendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .calendar-container {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* White background with transparency */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .month-table {
+            margin-bottom: 30px;
+        }
+        .month-title {
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+        }
+        .day {
+            width: 14.28%;
+            height: 50px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 200px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4 calendar-container">
+    <div class="image-container">
+        <h2 class="mt-2">2025 Calendar</h2>
+    </div>
+
+    <div class="row">
+        <!-- Loop through each month -->
+        <script>
+            const months = [
+                ["January", 31, 3], ["February", 28, 6], ["March", 31, 6], ["April", 30, 2],
+                ["May", 31, 4], ["June", 30, 7], ["July", 31, 2], ["August", 31, 5],
+                ["September", 30, 1], ["October", 31, 3], ["November", 30, 6], ["December", 31, 1]
+            ];
+
+            document.write('<div class="row">');
+            months.forEach(([month, days, startDay], index) => {
+                if (index % 2 === 0) document.write('<div class="row">');
+
+                document.write(`
+                    <div class="col-md-6">
+                        <div class="month-table">
+                            <div class="month-title">${month}</div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `);
+
+                let day = 1;
+                for (let i = 0; i < 6; i++) {
+                    document.write("<tr>");
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < startDay) {
+                            document.write("<td></td>");
+                        } else if (day <= days) {
+                            document.write(`<td>${day}</td>`);
+                            day++;
+                        } else {
+                            document.write("<td></td>");
+                        }
+                    }
+                    document.write("</tr>");
+                    if (day > days) break;
+                }
+
+                document.write(`</tbody></table></div></div>`);
+                if (index % 2 === 1) document.write("</div>");
+            });
+            document.write("</div>");
+        </script>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
